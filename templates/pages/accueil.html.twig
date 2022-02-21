@@ -11,8 +11,9 @@
         en cliquant sur la miniature, vous accèderez à la présentation plus détaillée de la formation ainsi que la vidéo correspondante.
     </p>
     <p>
-        Voici les deux dernières formations ajoutées au catalogue :
+        
         <table>
+            <caption style="caption-side: top">Voici les deux dernières formations ajoutées au catalogue :</caption>
             <tr>
                 {% for formation in formations %}
                     <td style="vertical-align: text-top; width: 50%">
@@ -22,7 +23,7 @@
                                 {% if formation.picture %}
                                     <a href="{{ path('formations.showone', {id:formation.id}) }}">
                                     <img src="{{ formation.picture }}" 
-                                         class="card-img-top" style="width:100%;height:auto;">
+                                         class="card-img-top" style="width:100%;height:auto;" alt="image de présentation de la formation">
                                     </a>    
                                 {% endif %}
                             </div>
