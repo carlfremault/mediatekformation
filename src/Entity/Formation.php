@@ -144,6 +144,11 @@ class Formation
     {
         return $this->niveau->getLibelle();
     }
+    
+    public function getNiveauId(): ?int
+    {
+        return $this->niveau->getId();
+    }        
 
     public function setNiveau(?niveau $niveau): self
     {
