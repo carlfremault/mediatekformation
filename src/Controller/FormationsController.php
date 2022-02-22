@@ -49,7 +49,7 @@ class FormationsController extends AbstractController {
      * @return Response
      */
     public function index(): Response {
-        $formations = $this->formationRepository->findAll();
+        $formations = $this->formationRepository->findAllOrderBy('publishedAt', 'DESC');
         return $this->render(self::PAGEFORMATIONS, [
                     'formations' => $formations,
                     'niveaux' => $this->niveaux
