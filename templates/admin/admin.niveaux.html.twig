@@ -2,10 +2,11 @@
 
 {% block body %}    
     <!-- niveau template -->
-    <form class="form-inline mt-3" method="POST" action="{{ path('admin.niveau.ajout') }}">
+    <form class="form-inline mt-3" method="POST" action="{{ path('admin.niveau.ajout', {champ: 'niveau'}) }}">
         <div class="form-group mr-1 mb-2">
             <input type="text" class="sm" name="libelle">
         </div>
+        <input type="hidden" name="_token" value="{{ csrf_token('ajout_niveau') }}">
         <button type="submit" class="btn btn-primary mb-2 btn-sm">ajouter un niveau</button>
     </form>
 

@@ -81,16 +81,19 @@ class AdminNiveauxController extends AbstractController {
     }
     
     /**
-     * @Route("/admin/niveau/ajout", name="admin.niveau.ajout")
+     * @Route("/admin/niveau/ajout/{champ}", name="admin.niveau.ajout")
+     * @param type $champ
      * @param Request $request
      * @return Response
      */
-    public function ajout(Request $request) : Response {
-        $libelleNiveau = $request->get("libelle");
+    public function ajout($champ, Request $request) : Response {
+        if ($this->isCsrfTokenValid('ajout_'.$champ, $request->get('_token'))) {
+        $libelleNiveau = htmlentities($request->get("libelle"));
         $niveau = new Niveau();
         $niveau->setLibelle($libelleNiveau);
         $this->om->persist($niveau);
         $this->om->flush();
-        return $this->redirectToRoute('admin.niveaux');
+        }
+        return $this->redirectToRoute('admin.niveaux');        
     }
 }

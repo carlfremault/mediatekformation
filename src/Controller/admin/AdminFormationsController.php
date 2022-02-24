@@ -90,6 +90,7 @@ class AdminFormationsController extends AbstractController {
      * @return Response
      */
     public function filter($champ, $valeur = null): Response {
+        $valeur = htmlentities($valeur);
         $formations = $this->formationRepository->findByEqualValue($champ, $valeur);
         return $this->render(self::PAGEADMINFORMATIONS, [
                     'formations' => $formations,
@@ -105,7 +106,7 @@ class AdminFormationsController extends AbstractController {
      */
     public function findAllContain($champ, Request $request): Response {
         if ($this->isCsrfTokenValid('filtre_' . $champ, $request->get('_token'))) {
-            $valeur = $request->get("recherche");
+            $valeur = htmlentities($request->get("recherche"));
             $formations = $this->formationRepository->findByContainValue($champ, $valeur);
             return $this->render(self::PAGEADMINFORMATIONS, [
                         'formations' => $formations,
