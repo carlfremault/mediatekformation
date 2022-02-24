@@ -48,6 +48,7 @@ class AdminFormationsController extends AbstractController {
             
     /**
      * @param FormationRepository $formationRepository
+     * @param EntityManagerInterface $om
      */
     function __construct(FormationRepository $formationRepository, NiveauRepository $niveauRepository, EntityManagerInterface $om) {
         $this->formationRepository = $formationRepository;

@@ -1,0 +1,44 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block body %}    
+    <!-- niveau template -->
+    <form class="form-inline mt-3" method="POST" action="{{ path('admin.niveau.ajout') }}">
+        <div class="form-group mr-1 mb-2">
+            <input type="text" class="sm" name="libelle">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 btn-sm">ajouter un niveau</button>
+    </form>
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left align-top">
+                    libellé
+                </th>
+                <th class="text-left align-top">
+                    actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for niveau in niveaux %}
+                <tr>
+                    <td>
+                        {{ niveau.libelle }}
+                    </td>
+                    <td>
+                        <a href="{{ path("admin.niveau.suppr", {id:niveau.id}) }}" class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer le niveau {{ niveau.libelle }} ?');">
+                            supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>            
+{%  endblock %}
