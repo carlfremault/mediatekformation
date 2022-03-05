@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Formulaire qui permet d'ajouter ou modifier une formation. Prérempli en cas de modification.
+ */
 class FormationType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options): void {

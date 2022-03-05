@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Description of AdminFormationsController
+ * Contrôleur pour la page admin des formations
  *
  * @author carlf
  */
@@ -47,6 +47,7 @@ class AdminFormationsController extends AbstractController {
     private $om;
             
     /**
+     * Constructeur. Valorise $formationRepository, $niveauRepository, EntityManagerInterface $om. Remplit le tableau $niveaux avec les niveaux de la base de données.
      * @param FormationRepository $formationRepository
      * @param EntityManagerInterface $om
      */
@@ -58,6 +59,7 @@ class AdminFormationsController extends AbstractController {
     }
     
     /**
+     * Route principale pour la partie backoffice. Affiche tous les formations disponibles. Permet d'ajouter, modifier ou supprimer une formation. Permet de trier sur le titre et la date de parution, et de filtrer sur le titre ou le niveau.
      * @Route("/admin", name="admin.formations")
      * @return Response
      */
@@ -70,6 +72,7 @@ class AdminFormationsController extends AbstractController {
     }
     
     /**
+     * Route qui permet de trier la liste des formations par rapport à un des champs par ordre ascendant ou descendant. 
      * @Route("/admin/tri/{champ}/{ordre}", name="admin.formations.sort")
      * @param type $champ
      * @param type $ordre
@@ -84,6 +87,7 @@ class AdminFormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet de filtrer les formations par rapport à un des champs et pour une valeur saisie. Utilisé par le menu déroulant qui filtre les niveaux.
      * @Route("/admin/filter/{champ}/{valeur}", name="admin.formations.filter")
      * @param type $champ
      * @param type $valeur
@@ -99,6 +103,7 @@ class AdminFormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet de filtrer les formations par rapport à un champ contenant une valeur saisie. Utilisé pour filtrer sur les titres des formations.
      * @Route("/admin/recherche/{champ}", name="admin.formations.findallcontain")
      * @param type $champ
      * @param Request $request
@@ -117,6 +122,7 @@ class AdminFormationsController extends AbstractController {
     }
     
     /**
+     * Route qui permet de supprimer une formation sélectionnée.
      * @Route ("/admin/suppr/{id}", name="admin.formation.suppr")
      * @param Formation $formation
      * @return Response
@@ -128,6 +134,7 @@ class AdminFormationsController extends AbstractController {
     }
  
     /**
+     * Route qui permet de modifier une formation sélectionnée. Ouvre un formulaire avec les champs préremplis.
      * @route ("/admin/edit/{id}", name="admin.formation.edit")
      * @param Formation $formation
      * @param Request $request
@@ -148,6 +155,7 @@ class AdminFormationsController extends AbstractController {
     }
     
     /**
+     * Route qui permet d'ajouter une formation. Ouvre un formulaire.
      * @route ("/admin/ajout", name="admin.formation.ajout")
      * @param Request $request
      * @return Response

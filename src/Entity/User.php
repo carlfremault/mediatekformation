@@ -7,11 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * Classe métier qui représente un utilisateur.
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface {
 
     /**
+     * Identifiant d'un utilisateur. Généré automatiquement.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -19,16 +21,19 @@ class User implements UserInterface {
     private $id;
 
     /**
+     * Nom d'un utilisateur.
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $username;
 
     /**
+     * Rôle(s) d'un utilisateur.
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
+     * Mot de passe d'un utilisateur. Hashé.
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -38,11 +43,6 @@ class User implements UserInterface {
         return $this->id;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUsername(): string {
         return (string) $this->username;
     }
@@ -53,9 +53,6 @@ class User implements UserInterface {
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
@@ -70,9 +67,6 @@ class User implements UserInterface {
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getPassword(): string {
         return $this->password;
     }
@@ -84,17 +78,15 @@ class User implements UserInterface {
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-     *
-     * @see UserInterface
+     * Fonction redéfinie obligatoirement suite à l'implémentation de UserInterface. Pas utilisée.
+     * @return string|null
      */
     public function getSalt(): ?string {
         return null;
     }
 
     /**
-     * @see UserInterface
+     * Fonction redéfinie obligatoirement suite à l'implémentation de UserInterface. Pas utilisée.
      */
     public function eraseCredentials() {
         // If you store any temporary, sensitive data on the user, clear it here

@@ -20,17 +20,46 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+/**
+ * Classe qui gère le processus d'authentification.
+ */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface {
 
     use TargetPathTrait;
 
+    /**
+     * Route pour l'authentification.
+     * @var string
+     */
     public const LOGIN_ROUTE = 'app_login';
 
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
+    
+    /**
+     * @var UrlGeneratorInterface
+     */
     private $urlGenerator;
+    
+    /**
+     * @var CsrfTokenManagerInterface
+     */
     private $csrfTokenManager;
+    
+    /**
+     * @var UserPasswordEncoderInterface
+     */
     private $passwordEncoder;
 
+    /**
+     * Constructeur. Valorise $entityManager, $urlGenerator, $csrfTokenManager, $passwordEncoder.
+     * @param EntityManagerInterface $entityManager
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param CsrfTokenManagerInterface $csrfTokenManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     */
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder) {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
@@ -42,6 +71,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return self::LOGIN_ROUTE === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
+    /**
+     * Fonction qui récupère le username et password saisi ainsi que le token CSRF.
+     * @param Request $request
+     * @return array
+     */
     public function getCredentials(Request $request) {
         $credentials = [
             'username' => $request->request->get('username'),
@@ -56,6 +90,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $credentials;
     }
 
+    /**
+     * Fonction qui récupère le User correspondant au username saisi depuis la base de données.
+     * @param type $credentials
+     * @param UserProviderInterface $userProvider
+     * @return User
+     * @throws InvalidCsrfTokenException
+     * @throws UsernameNotFoundException
+     */
     public function getUser($credentials, UserProviderInterface $userProvider) {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -71,6 +113,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $user;
     }
 
+    /**
+     * Fonction qui vérifie si le mot de passe saisi correspond à celui de l'utilisateur dont le nom a été saisi.
+     * @param type $credentials
+     * @param UserInterface $user
+     * @return boolean
+     */
     public function checkCredentials($credentials, UserInterface $user) {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
@@ -82,6 +130,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         return $credentials['password'];
     }
 
+    /**
+     * Fonction qui redirige vers la page appropriée en fonction de la réussite ou non de l'authentification.
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param type $providerKey
+     * @return RedirectResponse
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey) {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);

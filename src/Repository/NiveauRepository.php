@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository pour la classe métier Niveau.
+ * 
  * @method Niveau|null find($id, $lockMode = null, $lockVersion = null)
  * @method Niveau|null findOneBy(array $criteria, array $orderBy = null)
  * @method Niveau[]    findAll()

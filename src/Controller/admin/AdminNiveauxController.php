@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Description of AdminNiveauxController
+ * Contrôleur pour la page admin des niveaux
  *
  * @author carlf
  */
@@ -39,7 +39,7 @@ class AdminNiveauxController extends AbstractController {
     private $om;
 
     /**
-     * 
+     * Constructeur. Valorise $formationRepository, $niveauRepository, EntityManagerInterface $om.
      * @param NiveauRepository $niveauRepository
      * @param EntityManagerInterface $om
      */
@@ -50,6 +50,7 @@ class AdminNiveauxController extends AbstractController {
     }
 
     /**
+     * Route qui affiche tous les niveaux disponibles. Permet d'ajouter ou supprimer un niveau.
      * @Route("/admin/niveaux", name="admin.niveaux")
      * @return Response
      */
@@ -61,6 +62,7 @@ class AdminNiveauxController extends AbstractController {
     }
 
     /**
+     * Route qui permet de supprimer un niveau sélectionné.
      * @Route ("/admin/niveau/suppr/{id}", name="admin.niveau.suppr")
      * @param Niveau $niveau
      * @return Response
@@ -81,6 +83,7 @@ class AdminNiveauxController extends AbstractController {
     }
     
     /**
+     * Route qui permet d'ajouter un niveau saisi.
      * @Route("/admin/niveau/ajout/{champ}", name="admin.niveau.ajout")
      * @param type $champ
      * @param Request $request

@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository pour la classe métier Formation.
+ * 
  * @method Formation|null find($id, $lockMode = null, $lockVersion = null)
  * @method Formation|null findOneBy(array $criteria, array $orderBy = null)
  * @method Formation[]    findAll()

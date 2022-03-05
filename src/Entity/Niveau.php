@@ -6,11 +6,13 @@ use App\Repository\NiveauRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Classe métier qui représente un niveau.
  * @ORM\Entity(repositoryClass=NiveauRepository::class)
  */
 class Niveau
 {
     /**
+     * Identifiant d'un niveau. Généré automatiquement.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -18,6 +20,7 @@ class Niveau
     private $id;
 
     /**
+     * Libellé d'un niveau. Ne peut pas être vide.
      * @ORM\Column(type="string", length=50, nullable=false)
      */
     private $libelle;

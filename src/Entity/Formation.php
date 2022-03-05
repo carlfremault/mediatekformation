@@ -9,31 +9,37 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
+ * Classe métier qui représente une formation.
  * @ORM\Entity(repositoryClass=FormationRepository::class)
  */
 class Formation {
 
     /**
+     * Largeur des images 'miniature'.
      * @var int
      */
     private const MINIATUREWIDTH = 120;
     
     /**
+     * Hauteur des images 'miniature'.
      * @var int
      */
     private const MINIATUREHEIGHT = 90;
     
     /**
+     * Largeur des images 'picture'.
      * @var int
      */
     private const PICTUREWIDTH = 640;
     
     /**
+     * Hauteur des images 'picture'.
      * @var int
      */
     private const PICTUREHEIGHT = 480;
     
     /**
+     * Identifiant d'une formation. Généré automatiquement.
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -41,12 +47,14 @@ class Formation {
     private $id;
 
     /**
+     * Date de parution d'une formation. Ne peut pas être vide.
      * @Assert\NotBlank
      * @ORM\Column(type="datetime", nullable=false)
      */
     private $publishedAt;
 
     /**
+     * Titre d'une formation. Ne peut pas être vide.
      * @Assert\NotBlank
      * @Assert\Length(max=91 ,maxMessage = "Le titre ne peut pas excéder {{ limit }} caractères")
      * @ORM\Column(type="string", length=91, nullable=false)
@@ -54,29 +62,34 @@ class Formation {
     private $title;
 
     /**
+     * Description d'une formation. Peut être vide.
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
+     * URL qui pointe vers l'image 'miniature' d'une formation, affiché sur les pages qui listent les formations. Peut être vide.
      * @Assert\Length(max=46,maxMessage = "L'url de la miniature ne peut pas excéder {{ limit }} caractères")
      * @ORM\Column(type="string", length=46, nullable=true)
      */
     private $miniature;
 
     /**
+     * URL qui pointe vers l'image 'picture' d'une formation, affiché sur la page qui affiche les détails d'une formation.
      * @Assert\Length(max=48,maxMessage = "L'url de l'image ne peut pas excéder {{ limit }} caractères")
      * @ORM\Column(type="string", length=48, nullable=true)
      */
     private $picture;
 
     /**
+     * Identifiant de la vidéo sur YouTube. 11 caractères, peut être vide.
      * @Assert\Length(max=11,maxMessage = "L'identifiant de la vidéo ne peut pas excéder {{ limit }} caractères")
      * @ORM\Column(type="string", length=11, nullable=true)
      */
     private $videoId;
 
     /**
+     * Le niveau d'une formation.
      * @ORM\ManyToOne(targetEntity=Niveau::class)
      */
     private $niveau;
@@ -153,6 +166,10 @@ class Formation {
         return $this->niveau;
     }
 
+    /**
+     * Getter pour le libellé du niveau d'une formation.
+     * @return string|null
+     */
     public function getNiveauString(): ?string {
         return $this->niveau->getLibelle();
     }
