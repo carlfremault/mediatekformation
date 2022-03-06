@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Description of FormationsController
+ * Contrôleur pour la page qui liste les formations, côté front.
  *
  * @author emds
  */
@@ -35,7 +35,7 @@ class FormationsController extends AbstractController {
     private $niveaux;
 
     /**
-     * 
+     * Constructeur. Valorise $formationRepository, $niveauRepository. Remplit le tableau $niveaux avec les niveaux de la base de données.
      * @param FormationRepository $formationRepository
      */
     function __construct(FormationRepository $formationRepository, NiveauRepository $niveauRepository) {
@@ -45,11 +45,12 @@ class FormationsController extends AbstractController {
     }
 
     /**
+     * Route principale pour la page front des formations. Affiche tous les formations disponibles. Permet de trier sur le titre et la date de parution, et de filtrer sur le titre ou le niveau.
      * @Route("/formations", name="formations")
      * @return Response
      */
     public function index(): Response {
-        $formations = $this->formationRepository->findAll();
+        $formations = $this->formationRepository->findAllOrderBy('publishedAt', 'DESC');
         return $this->render(self::PAGEFORMATIONS, [
                     'formations' => $formations,
                     'niveaux' => $this->niveaux
@@ -57,6 +58,7 @@ class FormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet de trier la liste des formations par rapport à un des champs par ordre ascendant ou descendant. 
      * @Route("/formations/tri/{champ}/{ordre}", name="formations.sort")
      * @param type $champ
      * @param type $ordre
@@ -71,6 +73,7 @@ class FormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet de filtrer les formations par rapport à un des champs et pour une valeur saisie. Utilisé par le menu déroulant qui filtre les niveaux.
      * @Route("/formations/filter/{champ}/{valeur}", name="formations.filter")
      * @param type $champ
      * @param type $valeur
@@ -85,6 +88,7 @@ class FormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet de filtrer les formations par rapport à un champ contenant une valeur saisie. Utilisé pour filtrer sur les titres des formations.
      * @Route("/formations/recherche/{champ}", name="formations.findallcontain")
      * @param type $champ
      * @param Request $request
@@ -103,6 +107,7 @@ class FormationsController extends AbstractController {
     }
 
     /**
+     * Route qui permet d'afficher les détails d'une formation sélectionnée.
      * @Route("/formations/formation/{id}", name="formations.showone")
      * @param type $id
      * @return Response

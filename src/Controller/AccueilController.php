@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Description of AccueilController
+ * Contrôleur pour la page accueil. Affiche un message d'introduction au site ainsi que les deux formations les plus récentes.
  *
  * @author emds
  */
@@ -28,6 +28,7 @@ class AccueilController extends AbstractController{
     }    
     
     /**
+     * Route principale (et unique) pour la page d'accueil. Récupère et affiche les deux formations les plus récentes.
      * @Route("/", name="accueil")
      * @return Response
      */
