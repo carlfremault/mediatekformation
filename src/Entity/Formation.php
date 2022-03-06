@@ -192,7 +192,7 @@ class Formation {
      * @param ExecutionContextInterface $context
      * @param type $payload
      */
-    public function validate(ExecutionContextInterface $context, $payload) {
+    public function validate(ExecutionContextInterface $context) {
         $miniatureUrl = $this->getMiniature();
         $miniatureWidth = 0;
         $miniatureHeight = 0;
@@ -211,7 +211,7 @@ class Formation {
                         ->atPath('miniature')
                         ->addViolation();
                 return;
-            };
+            }
 
             if ($miniatureWidth != self::MINIATUREWIDTH || $miniatureHeight != self::MINIATUREHEIGHT) {
                 $context->buildViolation("Les miniatures doivent être de taille ".self::MINIATUREWIDTH."x".self::MINIATUREHEIGHT." pixels")
@@ -230,7 +230,7 @@ class Formation {
                         ->atPath('picture')
                         ->addViolation();
                 return;
-            };
+            }
 
             if ($pictureWidth > self::PICTUREWIDTH || $pictureHeight > self::PICTUREHEIGHT) {
                 $context->buildViolation("La taille des images ne doit pas dépasser ".self::PICTUREWIDTH."x".self::PICTUREHEIGHT." pixels")

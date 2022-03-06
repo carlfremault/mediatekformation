@@ -20,9 +20,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminFormationsController extends AbstractController {
 
     /**
+     * Vue des formations
      * @var string
      */
     private const PAGEADMINFORMATIONS = "admin/admin.formations.html.twig";
+    
+    /**
+     * Route pour la page backoffice des formations
+     * @var string
+     */
+    private const ROUTEADMINFORMATIONS = "admin.formations";    
         
     /**
      * @var FormationRepository
@@ -130,7 +137,7 @@ class AdminFormationsController extends AbstractController {
     public function suppr(Formation $formation): Response {
         $this->om->remove($formation);
         $this->om->flush();
-        return $this->redirectToRoute('admin.formations');
+        return $this->redirectToRoute(self::ROUTEADMINFORMATIONS);
     }
  
     /**
@@ -145,7 +152,7 @@ class AdminFormationsController extends AbstractController {
        $formFormation->handleRequest($request);
        if($formFormation->isSubmitted() && $formFormation->isValid()){
            $this->om->flush();
-           return $this->redirectToRoute('admin.formations');
+           return $this->redirectToRoute(self::ROUTEADMINFORMATIONS);
        }
         return $this->render("admin/admin.formation.edit.html.twig", [
             'formation' => $formation,
@@ -167,7 +174,7 @@ class AdminFormationsController extends AbstractController {
         if ($formFormation->isSubmitted() && $formFormation->isValid()) {
             $this->om->persist($formation);
             $this->om->flush();
-            return $this->redirectToRoute('admin.formations');
+            return $this->redirectToRoute(self::ROUTEADMINFORMATIONS);
         }
         return $this->render("admin/admin.formation.ajout.html.twig", [
                     'formation' => $formation,
