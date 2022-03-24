@@ -1,0 +1,310 @@
+{
+  "id": "53a5aed7-68b1-40b6-b1f4-aa86ac90ba93",
+  "version": "2.0",
+  "name": "MediatekFormations",
+  "url": "http://localhost/mediatekformation/public/",
+  "tests": [{
+    "id": "38ee59bd-5655-47e3-861d-0455aae23d4b",
+    "name": "backoffice",
+    "commands": [{
+      "id": "cd8a33d9-9e14-4cba-9155-f756736b79da",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/mediatekformation/public/admin",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fb2d08c7-6a52-4659-ae22-42ee587d0a55",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1033x727",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7e0bd367-299a-4d03-81da-7656a6604cc7",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=ajouter une nouvelle formation",
+      "targets": [
+        ["linkText=ajouter une nouvelle formation", "linkText"],
+        ["css=.mt-3 > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'ajouter une nouvelle formation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin/ajout')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'ajouter une nouvelle formation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e7e6aa65-de19-48de-9e88-31c08be38137",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Formations",
+      "targets": [
+        ["linkText=Formations", "linkText"],
+        ["css=.nav-item:nth-child(1) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Formations')]", "xpath:link"],
+        ["xpath=//nav[@id='navbarSupportedContent']/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Formations')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5d88d5f-c52c-4727-87d8-9131506e3afc",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(2) .btn-secondary",
+      "targets": [
+        ["css=tr:nth-child(2) .btn-secondary", "css:finder"],
+        ["xpath=(//a[contains(text(),'editer')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin/edit/2')]", "xpath:href"],
+        ["xpath=//tr[2]/td[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4cf026b-359a-4464-8410-5ee98217e7b5",
+      "comment": "",
+      "command": "click",
+      "target": "id=formation_publishedAt_day",
+      "targets": [
+        ["id=formation_publishedAt_day", "id"],
+        ["name=formation[publishedAt][day]", "name"],
+        ["css=#formation_publishedAt_day", "css:finder"],
+        ["xpath=//select[@id='formation_publishedAt_day']", "xpath:attributes"],
+        ["xpath=//div[@id='formation_publishedAt']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7237640-0768-4b8c-b43e-b3e63adefe90",
+      "comment": "",
+      "command": "select",
+      "target": "id=formation_publishedAt_day",
+      "targets": [],
+      "value": "label=27"
+    }, {
+      "id": "1bf22b1e-d4b2-4af0-8413-2090816004ac",
+      "comment": "",
+      "command": "click",
+      "target": "id=formation_Enregistrer",
+      "targets": [
+        ["id=formation_Enregistrer", "id"],
+        ["name=formation[Enregistrer]", "name"],
+        ["css=#formation_Enregistrer", "css:finder"],
+        ["xpath=//button[@id='formation_Enregistrer']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Enregistrer')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "da726894-57dc-4256-8319-beb1d3dc9a92",
+      "comment": "",
+      "command": "click",
+      "target": "id=dropdownMenuButton",
+      "targets": [
+        ["id=dropdownMenuButton", "id"],
+        ["css=#dropdownMenuButton", "css:finder"],
+        ["xpath=//button[@id='dropdownMenuButton']", "xpath:attributes"],
+        ["xpath=//div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a9bfc546-6233-4d21-9831-066a015a8acc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=débutant",
+      "targets": [
+        ["linkText=débutant", "linkText"],
+        ["css=.dropdown-item:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'débutant')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin/filter/niveau/1')]", "xpath:href"],
+        ["xpath=//div/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'débutant')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "262c89ea-fcd2-4ab3-a599-747423091c2d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mt-2 > .btn:nth-child(1)",
+      "targets": [
+        ["css=.mt-2 > .btn:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'<')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin/tri/publishedAt/DESC')]", "xpath:href"],
+        ["xpath=//th[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b39698c0-f4df-4e2d-bebd-34914acae910",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Niveaux",
+      "targets": [
+        ["linkText=Niveaux", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Niveaux')]", "xpath:link"],
+        ["xpath=//nav[@id='navbarSupportedContent']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/admin/niveaux')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Niveaux')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ccb30d1b-5707-453e-93bf-db0077fd9a48",
+    "name": "front office",
+    "commands": [{
+      "id": "2d271436-e7fe-47fe-9788-b75dfdb2b528",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/mediatekformation/public/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a9f0a445-ef48-4f70-8a34-6a0ad139ab0d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1033x727",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c325fbbd-f18e-436e-9031-9819d7535fef",
+      "comment": "",
+      "command": "click",
+      "target": "css=td:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=td:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='image de présentation de la formation']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6e0bea4c-304b-46d2-9a99-4c3500ad1a96",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Formations",
+      "targets": [
+        ["linkText=Formations", "linkText"],
+        ["css=.nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Formations')]", "xpath:link"],
+        ["xpath=//div[@id='navbarSupportedContent']/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/formations')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Formations')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a4a6cf9-401b-4936-aea6-58c014e9fa43",
+      "comment": "",
+      "command": "click",
+      "target": "name=recherche",
+      "targets": [
+        ["name=recherche", "name"],
+        ["css=.sm", "css:finder"],
+        ["xpath=//input[@name='recherche']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cd9f116-9b19-4c68-9d51-240f3e03317f",
+      "comment": "",
+      "command": "type",
+      "target": "name=recherche",
+      "targets": [
+        ["name=recherche", "name"],
+        ["css=.sm", "css:finder"],
+        ["xpath=//input[@name='recherche']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "eclipse"
+    }, {
+      "id": "987b70d4-2689-4050-a808-d8350c262b59",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn:nth-child(3)",
+      "targets": [
+        ["css=.btn:nth-child(3)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'filtrer')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6caa9460-4b18-4576-86c0-b1f89d1f1c0e",
+      "comment": "",
+      "command": "click",
+      "target": "id=dropdownMenuButton",
+      "targets": [
+        ["id=dropdownMenuButton", "id"],
+        ["css=#dropdownMenuButton", "css:finder"],
+        ["xpath=//button[@id='dropdownMenuButton']", "xpath:attributes"],
+        ["xpath=//div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "af8c8fb1-81d0-4114-9d30-ea7863f495e8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=confirmé",
+      "targets": [
+        ["linkText=confirmé", "linkText"],
+        ["css=.dropdown-item:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'confirmé')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/formations/filter/niveau/2')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'confirmé')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2828acd7-4d97-46e1-aa7e-b9467844a691",
+      "comment": "",
+      "command": "click",
+      "target": "css=.mt-2 > .btn:nth-child(1)",
+      "targets": [
+        ["css=.mt-2 > .btn:nth-child(1)", "css:finder"],
+        ["xpath=(//a[contains(text(),'<')])[2]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/formations/tri/publishedAt/DESC')]", "xpath:href"],
+        ["xpath=//th[3]/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e36c302d-c713-4f10-a4e5-d4208bcfa891",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=>",
+      "targets": [
+        ["linkText=>", "linkText"],
+        ["css=.text-left > .btn:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'>')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/formations/tri/title/ASC')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'>')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c7f8ff51-80e7-4926-9e30-2716e27592df",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Android Studio (complément n°1) : Navigation Drawer et Fragment",
+      "targets": [
+        ["linkText=Android Studio (complément n°1) : Navigation Drawer et Fragment", "linkText"],
+        ["css=tr:nth-child(1) .text-info > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Android Studio (complément n°1) : Navigation Drawer et Fragment')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/mediatekformation/public/formations/formation/89')]", "xpath:href"],
+        ["xpath=//h5/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Android Studio (complément n°1) : Navigation Drawer et Fragment')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d6c65051-53fd-436c-8d62-6f810977054a",
+    "name": "Mediatek Formations",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["38ee59bd-5655-47e3-861d-0455aae23d4b", "ccb30d1b-5707-453e-93bf-db0077fd9a48"]
+  }],
+  "urls": ["http://localhost/mediatekformation/public/admin", "http://localhost/mediatekformation/public/"],
+  "plugins": []
+}

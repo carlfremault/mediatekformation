@@ -39,6 +39,12 @@ class KeycloakAuthenticator  extends SocialAuthenticator{
      */
     private $router;
     
+    /**
+     * Constructeur. Valorise ClientRegistry, EntityManagerInterface, RouterInterface
+     * @param ClientRegistry $clientRegistry
+     * @param EntityManagerInterface $em
+     * @param RouterInterface $router
+     */
     public function __construct(ClientRegistry $clientRegistry, EntityManagerInterface $em, RouterInterface $router) {
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
