@@ -30,7 +30,11 @@ class FormationFixtures extends Fixture
         $this->niveauRepository = $niveauRepository;
     }
 
-    
+    /**
+     * Fonction 'load' pour remplir les niveaux des différentes formations avec un niveau aléatoire
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $formations = $this->formationRepository->findAll();
