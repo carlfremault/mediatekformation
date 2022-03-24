@@ -20,7 +20,7 @@ class AccueilController extends AbstractController{
     private $repository;
     
     /**
-     * 
+     * Constructeur. Valorise $repository avec le repository pour les formations
      * @param FormationRepository $repository
      */
     public function __construct(FormationRepository $repository) {

@@ -94,74 +94,140 @@ class Formation {
      */
     private $niveau;
 
+    /**
+     * Getter pour l'identifiant
+     * @return int|null
+     */
     public function getId(): ?int {
         return $this->id;
     }
 
+    /**
+     * Getter pour la date de publication d'une formation sous format DateTime
+     * @return DateTimeInterface|null
+     */
     public function getPublishedAt(): ?DateTimeInterface {
         return $this->publishedAt;
     }
 
+    /**
+     * Getter pour la date de publication d'une formation sous format de chaine de caractères
+     * @return string
+     */
     public function getPublishedAtString(): string {
         return $this->publishedAt->format('d/m/Y');
     }
 
+    /**
+     * Setter pour la date de publication d'une formation
+     * @param DateTimeInterface|null $publishedAt
+     * @return \self
+     */
     public function setPublishedAt(?DateTimeInterface $publishedAt): self {
         $this->publishedAt = $publishedAt;
 
         return $this;
     }
 
+    /**
+     * Getter pour le titre d'une formation
+     * @return string|null
+     */
     public function getTitle(): ?string {
         return $this->title;
     }
 
+    /**
+     * Setter pour le titre d'une formation
+     * @param string|null $title
+     * @return \self
+     */
     public function setTitle(?string $title): self {
         $this->title = $title;
 
         return $this;
     }
 
+    /**
+     * Getter pour la description d'une formation
+     * @return string|null
+     */
     public function getDescription(): ?string {
         return $this->description;
     }
 
+    /**
+     * Setter pour la description d'une formation
+     * @param string|null $description
+     * @return \self
+     */
     public function setDescription(?string $description): self {
         $this->description = $description;
 
         return $this;
     }
 
+    /**
+     * Getter pour l'url de la miniature d'une formation
+     * @return string|null
+     */
     public function getMiniature(): ?string {
         return $this->miniature;
     }
 
+    /**
+     * Setter pour l'url de la miniature d'une formation
+     * @param string|null $miniature
+     * @return \self
+     */
     public function setMiniature(?string $miniature): self {
         $this->miniature = $miniature;
 
         return $this;
     }
 
+    /**
+     * Getter pour l'url de l'image d'une formation
+     * @return string|null
+     */
     public function getPicture(): ?string {
         return $this->picture;
     }
 
+    /**
+     * Setter pour l'url de l'image d'une formation
+     * @param string|null $picture
+     * @return \self
+     */
     public function setPicture(?string $picture): self {
         $this->picture = $picture;
 
         return $this;
     }
 
+    /**
+     * Getter pour l'identifiant de la vidéo d'une formation
+     * @return string|null
+     */
     public function getVideoId(): ?string {
         return $this->videoId;
     }
 
+    /**
+     * Setter pour l'identifiant de la vidéo d'une formation
+     * @param string|null $videoId
+     * @return \self
+     */
     public function setVideoId(?string $videoId): self {
         $this->videoId = $videoId;
 
         return $this;
     }
 
+    /**
+     * Getter pour le niveau d'une formation sous forme de Niveau
+     * @return \App\Entity\niveau|null
+     */
     public function getNiveau(): ?niveau {
         return $this->niveau;
     }
@@ -174,10 +240,19 @@ class Formation {
         return $this->niveau->getLibelle();
     }
 
+    /**
+     * Getter pour l'identifiant du niveau d'une formation
+     * @return int|null
+     */
     public function getNiveauId(): ?int {
         return $this->niveau->getId();
     }
 
+    /**
+     * Setter pour le niveau d'une formation
+     * @param \App\Entity\niveau|null $niveau
+     * @return \self
+     */
     public function setNiveau(?niveau $niveau): self {
         $this->niveau = $niveau;
 
