@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -18,37 +20,51 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class FormationType extends AbstractType {
 
+    private const HTTP = "http://";
+
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
                 ->add('publishedAt', DateType::class, [
-                    'widget'=>'choice',
+                    'widget' => 'choice',
                     'format' => 'dd-MMM-yyyy',
-                    'label'=>'Parution'
+                    'label' => 'Parution'
                 ])
                 ->add('title', TextType::class, [
-                    'required'=>true,
-                    'label'=>'Titre'
+                    'required' => true,
+                    'label' => 'Titre'
                 ])
                 ->add('description', TextareaType::class, [
                     'attr' => array('style' => 'height: 20vh'),
-                    'required'=>false
+                    'required' => false
                 ])
                 ->add('miniature', TextType::class, [
-                    'label' =>'Miniature (URL, taille 120x90 pixels)',
-                    'required'=>false
+                    'label' => 'Miniature (URL, taille 120x90 pixels)',
+                    'required' => false
                 ])
                 ->add('picture', TextType::class, [
-                    'label'=>'Image (URL, taille maximale 640x480 pixels)',
-                    'required'=>false
+                    'label' => 'Image (URL, taille maximale 640x480 pixels)',
+                    'required' => false
                 ])
                 ->add('videoId', TextType::class, [
-                    'required'=>false
+                    'required' => false
                 ])
                 ->add('niveau', EntityType::class, [
                     'class' => Niveau::class,
                     'choice_label' => 'libelle',
-                    'required'=>true
-                    ])
+                    'required' => true
+                ])
+                ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                    $infos = $event->getData();
+                    $picture = $infos->getPicture();
+                    if (strlen($picture) > 0 && strpos($picture, "//") === false) {
+                        $infos->setPicture(self::HTTP . $picture);
+                    }
+                    $miniature = $infos->getMiniature();
+                    if (strlen($miniature) > 0 && strpos($miniature, "//") === false) {
+                        $infos->setMiniature(self::HTTP . $miniature);
+                    }
+                    $event->setData($infos);
+                })
                 ->add('Enregistrer', SubmitType::class)
         ;
     }

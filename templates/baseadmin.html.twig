@@ -10,18 +10,34 @@
         </div>
         <!-- menu -->
         <nav class="navbar navbar-expand-sm navbar-light bg-light" style="min-height: 20px"
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin.formations') }}">Formations</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin.niveaux') }}">Niveaux</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>        
+             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">                    
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin.formations') }}">Formations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin.niveaux') }}">Niveaux</a>
+                </li>
+            </ul>
     </div>
+</nav>        
+</div>
 {% endblock %}
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script>
+        function validationForm() {
+            var miniature = document.getElementById('formation_miniature');
+            var miniaturevalue = miniature.value;
+            if(miniaturevalue.search("//") >= 0){
+                miniature.value = miniaturevalue.split("//")[1];
+            }
+            var picture = document.getElementById('formation_picture');
+            var picturevalue = picture.value;
+            if(picturevalue.search("//") >= 0){
+                picture.value = picturevalue.split("//")[1];
+            }
+            return true;
+        }
+    </script>
+{% endblock %}

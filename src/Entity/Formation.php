@@ -19,25 +19,25 @@ class Formation {
      * @var int
      */
     private const MINIATUREWIDTH = 120;
-    
+
     /**
      * Hauteur des images 'miniature'.
      * @var int
      */
     private const MINIATUREHEIGHT = 90;
-    
+
     /**
      * Largeur des images 'picture'.
      * @var int
      */
     private const PICTUREWIDTH = 640;
-    
+
     /**
      * Hauteur des images 'picture'.
      * @var int
      */
     private const PICTUREHEIGHT = 480;
-    
+
     /**
      * Identifiant d'une formation. Généré automatiquement.
      * @ORM\Id
@@ -278,18 +278,25 @@ class Formation {
 
         if ($miniatureUrl != "") {
             try {
-                $info = getimagesize($miniatureUrl);
-                $miniatureWidth = $info[0];
-                $miniatureHeight = $info[1];
-            } catch (\Exception $e) {
+                $miniatureUrlurl = 'http://'.$miniatureUrl;
+                $info = getimagesize($miniatureUrlurl);
+            } catch (\Exception $ex) {
                 $context->buildViolation("Ceci n'est pas une image")
                         ->atPath('miniature')
                         ->addViolation();
                 return;
             }
 
-            if ($miniatureWidth != self::MINIATUREWIDTH || $miniatureHeight != self::MINIATUREHEIGHT) {
-                $context->buildViolation("Les miniatures doivent être de taille ".self::MINIATUREWIDTH."x".self::MINIATUREHEIGHT." pixels")
+            if ($info) {
+                $miniatureWidth = $info[0];
+                $miniatureHeight = $info[1];
+                if ($miniatureWidth != self::MINIATUREWIDTH || $miniatureHeight != self::MINIATUREHEIGHT) {
+                    $context->buildViolation("Les miniatures doivent être de taille " . self::MINIATUREWIDTH . "x" . self::MINIATUREHEIGHT . " pixels")
+                            ->atPath('miniature')
+                            ->addViolation();
+                }
+            } else {
+                $context->buildViolation("Ceci n'est pas une image")
                         ->atPath('miniature')
                         ->addViolation();
             }
@@ -297,18 +304,25 @@ class Formation {
 
         if ($pictureUrl != "") {
             try {
+                $pictureUrl = 'http://'.$pictureUrl;
                 $info = getimagesize($pictureUrl);
-                $pictureWidth = $info[0];
-                $pictureHeight = $info[1];
-            } catch (\Exception $e) {
+            } catch (\Exception $ex) {
                 $context->buildViolation("Ceci n'est pas une image")
                         ->atPath('picture')
                         ->addViolation();
                 return;
             }
 
-            if ($pictureWidth > self::PICTUREWIDTH || $pictureHeight > self::PICTUREHEIGHT) {
-                $context->buildViolation("La taille des images ne doit pas dépasser ".self::PICTUREWIDTH."x".self::PICTUREHEIGHT." pixels")
+            if ($info) {
+                $pictureWidth = $info[0];
+                $pictureHeight = $info[1];
+                if ($pictureWidth > self::PICTUREWIDTH || $pictureHeight > self::PICTUREHEIGHT) {
+                    $context->buildViolation("La taille des images ne doit pas dépasser " . self::PICTUREWIDTH . "x" . self::PICTUREHEIGHT . " pixels")
+                            ->atPath('picture')
+                            ->addViolation();
+                }
+            } else {
+                $context->buildViolation("Ceci n'est pas une image")
                         ->atPath('picture')
                         ->addViolation();
             }
