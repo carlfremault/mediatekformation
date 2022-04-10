@@ -25,8 +25,8 @@ class FormationType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
                 ->add('publishedAt', DateType::class, [
-                    'widget' => 'choice',
-                    'format' => 'dd-MMM-yyyy',
+                    'widget' => 'single_text',
+                    'data' => isset($options['data']) && $options['data']->getPublishedAt() != null ? $options['data']->getPublishedAt() : new \DateTime('now'),
                     'label' => 'Parution'
                 ])
                 ->add('title', TextType::class, [
